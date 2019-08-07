@@ -66,7 +66,9 @@ function makeItMatch() {
         openCardList = [];
     }
     // When user reach to 8 that means he matching all cards then display modal message.
-    trackUser === 8 ? notify() : console.log("Not yet");
+    if(trackUser === 8){
+        notifyModal();
+    }
 }
 
 function cardStateReady() {
@@ -141,7 +143,7 @@ function hideOpenCards() {
 }
 
 
-function notify() {
+function notifyModal() {
     // finaly get seconds and minutes to tell user how long he played..
     timerModalUI.innerHTML = `You do it after:${minutes}:${seconds}`;
     totalMovesUI.innerHTML = moveSteps;
