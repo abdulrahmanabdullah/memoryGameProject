@@ -3,7 +3,7 @@
 ## Table of Contents
 * [Instructions](#instructions)
 * [Screenshot](#screenshot)
-* [HowPlayWork](#how_play_work)
+* [HowPlayWork](#how_Play_Works)
 
 ## Instructions
 Styling this game by using **HTML** , **CSS** and **Javascript**  😍 😍  to make rules of game 💪  
