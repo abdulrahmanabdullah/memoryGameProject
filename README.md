@@ -3,7 +3,7 @@
 ## Table of Contents
 * [Instructions](#instructions)
 * [Screenshot](#screenshot)
-* [HowPlayWork](#howplaywork)
+* [HowPlayWork](#how_play_work)
 
 ## Instructions
 Styling this game by using **HTML** , **CSS** and **Javascript**  😍 😍  to make rules of game 💪  
@@ -17,13 +17,13 @@ Styling this game by using **HTML** , **CSS** and **Javascript**  😍 😍  to 
 <img src="screenshot/pic_5.png" width="250">
 
 
-## How Play works:
+## How_Play_works:
  - click card 🔲
  - find the matching flipped card 🗃
  - see your scores after matching all cards 💪 
- - see how long time your spend of each round 😌
+ - see how many long minutes your spened of each round 😌
 
- 
+
 
 
 
