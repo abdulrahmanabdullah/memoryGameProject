@@ -1,4 +1,4 @@
-# Memory Game Project ♥️ ♥️ ♥️ . 
+# Memory Game Project with singleton and state pattern ♥️ ♥️ ♥️ . 
 
 ## Table of Contents
 * [Instructions](#instructions)
@@ -6,10 +6,11 @@
 * [HowPlayWork](#how_Play_Works)
 
 ## Instructions
-Styling this game by using **HTML** , **CSS** and **Javascript**  😍 😍  to make rules of game 💪  
-
+Game structure page with **HTML** and style with  **CSS** and **Javascript**  😍 😍  to make rules of game 💪  
 
 ## ScreenShot 
+<img src="screenshot/pic_6.gif" width="250">
+<img src="screenshot/pic_7.gif" width="250">
 <img src="screenshot/pic_1.png" width="250">
 <img src="screenshot/pic_2.gif" width="250">
 <img src="screenshot/pic_3.gif" width="250">

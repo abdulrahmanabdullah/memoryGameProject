@@ -1,6 +1,5 @@
 // Put all element here 
 const UI = (function () {
-
     // priavte variables. 
     let lastCardOpened = null;
     let matcheCards = [];
@@ -30,8 +29,6 @@ const UI = (function () {
         li.appendChild(i);
         return li;
     }
-
-
     const timerOne = () => TimerClass.getInstance();
     //Public funcitons
     return {
@@ -78,7 +75,8 @@ const UI = (function () {
                             matcheCards.push(lastCardOpened);
                             //to accept new one.
                             lastCardOpened = null;
-                            if (matcheCards.length === 2) {
+                            // 16 means all card is matching 👍
+                            if (matcheCards.length === 16) {
                                 this.modalInfo();
                             }
                         }
