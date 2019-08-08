@@ -16,8 +16,8 @@ let trackUser = 0;
 // calculate user moves.
 let moveSteps = 0;
 // This is for timer.
-let seconds = 0;
-let minutes = 0;
+// let seconds = 0;
+// let minutes = 0;
 
 
 // When open page or restart game call this funciton
@@ -25,9 +25,10 @@ document.addEventListener("DOMContentLoaded", initGame);
 function initGame() {
     // Hide all cards 
     hideAllCards();
-    GameController.createCards(); 
-    GameController.cardEventListener();
+
 }
+GameController.init();
+GameController.restartGame();
 
 // Save all card names as array then pass it to shuffle method .
 // function fetchIconNames() {
@@ -130,21 +131,8 @@ function cardStateReady() {
 }
 
 // Fire when card click . 
-cardStateReady();
+// cardStateReady();
 
-function rating() {
-    movesUI.innerHTML = `${moveSteps}`;
-    let putThreeStars = `<li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i>`;
-    let putTwoStars = `<li><i class="fa fa-star"></i></li> <li><i class="fa fa-star"></i></li> <li><i class="fa fa-star-o"></i>`;
-    let putOneStar = `<li><i class="fa fa-star"></i></li> <li><i class="fa fa-star-o"></i></li> <li><i class="fa fa-star-o"></i> `;
-    if (moveSteps < 3) {
-        startsUI.innerHTML = putThreeStars;
-    } else if (moveSteps < 8) {
-        startsUI.innerHTML = putTwoStars;
-    } else {
-        startsUI.innerHTML = putOneStar;
-    }
-}
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -161,19 +149,19 @@ function rating() {
 // }
 
 // Restart game 
-const restartUI = document.querySelector('.restart');
-restartUI.addEventListener('click', restartGame);
+// const restartUI = document.querySelector('.restart');
+// restartUI.addEventListener('click', restartGame);
 
-function restartGame() {
-    trackUser = 0;
-    moveSteps = 0;
-    movesUI.innerHTML = moveSteps;
-    hideAllCards();
-    rating();
-    seconds = 0;
-    minutes = 0;
-    timerUI.innerHTML = `${minutes}:${seconds}`;
-}
+// function restartGame() {
+//     trackUser = 0;
+//     moveSteps = 0;
+//     movesUI.innerHTML = moveSteps;
+//     hideAllCards();
+//     rating();
+//     seconds = 0;
+//     minutes = 0;
+//     timerUI.innerHTML = `${minutes}:${seconds}`;
+// }
 
 // hide show and open cards 
 function hideOpenCards() {
@@ -204,20 +192,20 @@ function notifyModal() {
 /*
  ** Timer area 
 */
-let fireTimer = setInterval(() => calculateTime(), 1000);
+// let fireTimer = setInterval(() => calculateTime(), 1000);
 
-function calculateTime() {
-    seconds += 1;
-    if (seconds >= 60) {
-        minutes += 1;
-        seconds = 0;
-    }
-    timerUI.innerHTML = `${minutes}:${seconds}`;
-}
+// function calculateTime() {
+//     seconds += 1;
+//     if (seconds >= 60) {
+//         minutes += 1;
+//         seconds = 0;
+//     }
+//     timerUI.innerHTML = `${minutes}:${seconds}`;
+// }
 
-function stopTimer() {
-    clearInterval(fireTimer);
-}
+// function stopTimer() {
+//     clearInterval(fireTimer);
+// }
 
 /*
  ** RESTER GAME area 
@@ -229,5 +217,5 @@ function hideAllCards() {
         card.className = 'card';
     }
     // shuffledIconName();
-    fireTimer;
+    // fireTimer;
 }

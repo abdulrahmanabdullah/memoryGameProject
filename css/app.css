@@ -79,6 +79,14 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
+.deck .card.no-match {
+    cursor: default;
+    background-color: #CC0000;
+    font-size: 33px;
+    transform: rotateY(-360deg);
+    transform: rotateX(-360deg);
+
+}
 
 /*
  * Styles for the Score Panel
