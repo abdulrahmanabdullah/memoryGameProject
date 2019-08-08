@@ -16,8 +16,10 @@ const UI = (function () {
         timer: "#timer",
         stars: ".stars",
         timerModal: "#timer-modal",
+        restartModalBtn: "#restart-modal-btn",
+        movesModal: "#moves-modal",
     }
-    // just create one card. 
+    // To create one card just one card :100: 
     const createCard = function (cardClassName) {
         let li = document.createElement('li');
         li.classList.add('card');
@@ -29,7 +31,7 @@ const UI = (function () {
         return li;
     }
 
-    
+
     const timerOne = () => TimerClass.getInstance();
     //Public funcitons
     return {
@@ -50,7 +52,7 @@ const UI = (function () {
             }
         },
         cardEventListener: function () {
-            // Using unknownoums function to avoid create new variable like -> self  
+            // Using Anonymous function to avoid create new variable like -> self  
             this.timer().startTimer(() =>
                 document.querySelector(UISelector.timer).innerHTML = `<em>${this.timer().getCurrentTime()}</em>`);
             document.querySelectorAll(UISelector.card).forEach((card) => {
@@ -76,6 +78,9 @@ const UI = (function () {
                             matcheCards.push(lastCardOpened);
                             //to accept new one.
                             lastCardOpened = null;
+                            if (matcheCards.length === 2) {
+                                this.modalInfo();
+                            }
                         }
                         //Card not matching 
                         else {
@@ -120,13 +125,28 @@ const UI = (function () {
         },
         restartGame: function () {
             moveSteps = 0;
+            matcheCards = [];
             this.timer().restartTimer(() =>
-            document.querySelector(UISelector.timer).innerHTML = `<em>${this.timer().getCurrentTime()}</em>`);
+                document.querySelector(UISelector.timer).innerHTML = `<em>${this.timer().getCurrentTime()}</em>`);
             this.movesCounter(moveSteps);
             this.buildStars(moveSteps);
             document.querySelector(UISelector.deck).innerHTML = '';
             this.buildCards();
             this.cardEventListener();
+        },
+        modalInfo: function () {
+            let modalUI = document.querySelector(UISelector.modalCenter);
+            //Stopping timer 
+            this.timer().stopTimer();
+            modalUI.classList.add('show');
+            modalUI.style.display = 'block';
+            document.querySelector(UISelector.movesModal).innerHTML = moveSteps;
+            document.querySelector(UISelector.timerModal).innerHTML = this.timer().getCurrentTime();
+            document.querySelector(UISelector.restartModalBtn).addEventListener('click', () => {
+                modalUI.classList.remove('show');
+                modalUI.style.display = 'none';
+                this.restartGame();
+            });
         },
         oneSecondHint: function () {
             document.querySelectorAll(UISelector.card).forEach((card) => {
@@ -138,57 +158,5 @@ const UI = (function () {
             console.log("Calling after time out");
             this.cardEventListener();
         },
-    }
-})();
-//Timer class 
-const TimerClass = (function TimerClass() {
-    let instance;
-    let seconds = 0;
-    let minutes = 0;
-    let isTimeStart = false;
-    let timer;
-
-    function createInstance() {
-        let object = new TimerClass();
-        return object;
-    }
-
-    return {
-        getInstance: function () {
-            if (!instance) {
-                instance = createInstance();
-            }
-            return instance;
-        },
-        startTimer: (callback) => {
-            if (isTimeStart === true) {
-                return;
-            }
-            isTimeStart = true;
-            timer = setInterval(() => {
-                seconds++;
-                if (seconds >= 60) {
-                    minutes++;
-                    seconds = 0;
-                }
-                if (callback) {
-                    callback();
-                }
-            }, 1000);
-
-        },
-        stopTimer: () => {
-            clearInterval(timer);
-            this.isTimeStart = false;
-        },
-        restartTimer : () =>{
-            this.stopTimer;
-            seconds = 0 ;
-            minutes = 0 ;
-        }, 
-        getCurrentTime: () => {
-            let timeString = `0${minutes}:${seconds}`;
-            return timeString;
-        }
     }
 })();
