@@ -7,6 +7,8 @@ const totalMovesUI = document.getElementById('moves');
 const timerUI = document.getElementById('timer');
 const timerModalUI = document.getElementById('timer-modal');
 
+
+
 // Global variables .
 // track the matching cards, when reach to 8 that's mean game is end.
 let trackUser = 0;
@@ -23,29 +25,30 @@ document.addEventListener("DOMContentLoaded", initGame);
 function initGame() {
     // Hide all cards 
     hideAllCards();
+    GameController.createCards(); 
+    GameController.cardEventListener();
 }
-
 
 // Save all card names as array then pass it to shuffle method .
-function fetchIconNames() {
-    let cardNames = [];
-    for (const card of cardsUI.children) {
-        let names = card.children[0].className;
-        cardNames.push(names);
-    }
-    return cardNames;
-}
+// function fetchIconNames() {
+//     let cardNames = [];
+//     for (const card of cardsUI.children) {
+//         let names = card.children[0].className;
+//         cardNames.push(names);
+//     }
+//     return cardNames;
+// }
 
 // When refresh page or start new game call this function 
-function shuffledIconName() {
-    let currentCount = -1;
-    let cardNames = shuffle(fetchIconNames());
-    for (const card of cardsUI.children) {
-        currentCount += 1;
-        let i_tage = card.children[0];
-        i_tage.className = cardNames[currentCount];
-    }
-}
+// function shuffledIconName() {
+//     let currentCount = -1;
+//     let cardNames = shuffle(fetchIconNames());
+//     for (const card of cardsUI.children) {
+//         currentCount += 1;
+//         let i_tage = card.children[0];
+//         i_tage.className = cardNames[currentCount];
+//     }
+// }
 
 // put card when click 
 openCardList = [];
@@ -71,25 +74,25 @@ function makeItMatch() {
         notifyModal();
     }
 }
-let lastFlipped = null ;
+let lastFlipped = null;
 function cardStateReady() {
     // When user start clicked any card, fire timer.
     const cardUI = document.querySelectorAll('.card');
-    cardUI.forEach(function(value){
-        value.addEventListener('click', function(){
-            if(value === lastFlipped || openCardList.includes(value)){
+    cardUI.forEach(function (value) {
+        value.addEventListener('click', function () {
+            if (value === lastFlipped || openCardList.includes(value)) {
                 return;
             }
             console.log(lastFlipped);
-            
-            if(lastFlipped){
+
+            if (lastFlipped) {
                 let thisCard = value.children[0].getAttribute('data-name');
                 let lastCard = lastFlipped.children[0].getAttribute('data-name');
-                console.log("this card = ",thisCard);
-                console.log("last card = ",lastCard);
+                console.log("this card = ", thisCard);
+                console.log("last card = ", lastCard);
             }
             lastFlipped = value;
-            
+
         });
     })
     // for (const card of cardsUI.children) {
@@ -145,17 +148,17 @@ function rating() {
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
-}
+// function shuffle(array) {
+//     var currentIndex = array.length, temporaryValue, randomIndex;
+//     while (currentIndex !== 0) {
+//         randomIndex = Math.floor(Math.random() * currentIndex);
+//         currentIndex -= 1;
+//         temporaryValue = array[currentIndex];
+//         array[currentIndex] = array[randomIndex];
+//         array[randomIndex] = temporaryValue;
+//     }
+//     return array;
+// }
 
 // Restart game 
 const restartUI = document.querySelector('.restart');
@@ -225,6 +228,6 @@ function hideAllCards() {
     for (const card of cardsUI.children) {
         card.className = 'card';
     }
-    shuffledIconName();
+    // shuffledIconName();
     fireTimer;
 }

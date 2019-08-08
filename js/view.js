@@ -10,14 +10,14 @@ const UI = (function () {
     // just create one card. 
     const createCard = function (cardClassName) {
         let li = document.createElement('li');
-        li.classList.add('card', cardClassName);
+        li.classList.add('card');
         li.setAttribute('data-card-name', cardClassName);
         let i = document.createElement('i');
         i.classList.add('fa', cardClassName);
         i.setAttribute('data-card-name', cardClassName);
         li.appendChild(i);
         return li;
-    },
+    }
 
     //Public funcitons
     return {
