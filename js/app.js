@@ -60,31 +60,70 @@ function makeItMatch() {
             item.classList.add('match');
         }
         trackUser += 1;
-        openCardList = [];
+        // openCardList = [];
     } else {
-        hideOpenCards();
-        openCardList = [];
+        // hideOpenCards();
+
+        // openCardList = [];
     }
     // When user reach to 8 that means he matching all cards then display modal message.
-    if(trackUser === 8){
+    if (trackUser === 8) {
         notifyModal();
     }
 }
-
+let lastFlipped = null ;
 function cardStateReady() {
     // When user start clicked any card, fire timer.
-    for (const card of cardsUI.children) {
-        card.addEventListener('click', function () {
-            openCardList.push(card);
-            //observe user moves.
-            moveSteps += 1;
-            rating();
-            if (openCardList.length <= 2) {
-                card.classList.add('show', 'open');
-                setTimeout(makeItMatch, 1000);
+    const cardUI = document.querySelectorAll('.card');
+    cardUI.forEach(function(value){
+        value.addEventListener('click', function(){
+            if(value === lastFlipped || openCardList.includes(value)){
+                return;
             }
+            console.log(lastFlipped);
+            
+            if(lastFlipped){
+                let thisCard = value.children[0].getAttribute('data-name');
+                let lastCard = lastFlipped.children[0].getAttribute('data-name');
+                console.log("this card = ",thisCard);
+                console.log("last card = ",lastCard);
+            }
+            lastFlipped = value;
+            
         });
-    }
+    })
+    // for (const card of cardsUI.children) {
+    //     card.addEventListener('click', function () {
+    //         openCardList.push(card);
+    //         card.classList.add('show', 'open');
+    //         //observe user moves.
+    //         moveSteps += 1;
+    //         rating();
+    //         if (openCardList.length >= 2) {
+    //             console.log(`Card length = ${openCardList.length}`);
+    //             if(openCardList.includes(card)){
+    //                 console.log("we have some .. ");
+    //                 return ;
+    //             }
+    //             setTimeout(function () {
+
+    //                 if (isMatching()) {
+    //                     card.classList.add('match');
+    //                     trackUser += 1;
+    //                 } else {
+    //                     card.className = 'card';
+    //                 }
+    //                 // When user reach to 8 that means he matching all cards then display modal message.
+    //                 if (trackUser === 8) {
+    //                     notifyModal();
+    //                 }
+    //             }, 1000);
+    //             // openCardList = [];
+    //         } else {
+    //             card.className = 'card';
+    //         }
+    //     });
+    // }
 }
 
 // Fire when card click . 
@@ -137,6 +176,7 @@ function restartGame() {
 function hideOpenCards() {
     for (const card of cardsUI.children) {
         if (!card.classList.contains('match')) {
+            console.log(`Condition in hideOpenCards working `);
             card.className = 'card';
         }
     }
@@ -186,5 +226,5 @@ function hideAllCards() {
         card.className = 'card';
     }
     shuffledIconName();
-    fireTimer ;
+    fireTimer;
 }
